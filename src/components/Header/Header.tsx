@@ -8,8 +8,7 @@ export interface HeaderProps {
 }
 
 const Header: React.SFC<HeaderProps> = ({ isAuth }) => {
-    const ulStyle = { display: "flex", padding: "0", listStyle: "none" };
-    const liStyle = { padding: "5px", border: "1px solid black", margin: "2px" }
+  
 
     const display = () => {
         if (isAuth) {
