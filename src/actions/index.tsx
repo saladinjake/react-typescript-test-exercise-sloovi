@@ -17,8 +17,6 @@ import {
 } from "./types";
 
 // CRUD API DISPATCHES
-
-
 import SlooviCrudApiService from "../services/crudeapi.services";
 
 
@@ -105,7 +103,7 @@ interface TaskProps{
 }  
 
 
-export const createItem = (data: TaskProps) => async (dispatch: Dispatch<any>) => {
+export const createTask = (data: TaskProps) => async (dispatch: Dispatch<any>) => {
   try {
     const res = await SlooviCrudApiService.createTask(data);
 
@@ -120,7 +118,7 @@ export const createItem = (data: TaskProps) => async (dispatch: Dispatch<any>) =
   }
 };
 
-export const getAllItems = () => async (dispatch: Dispatch<any>) => {
+export const getTasks = () => async (dispatch: Dispatch<any>) => {
   try {
     const res = await SlooviCrudApiService.getTasks();
 
@@ -133,7 +131,7 @@ export const getAllItems = () => async (dispatch: Dispatch<any>) => {
   }
 };
 
-export const updateItem = (id: string, data: TaskProps) => async (dispatch: Dispatch<any>) => {
+export const updateTask = (id: string, data: TaskProps) => async (dispatch: Dispatch<any>) => {
   try {
     const res = await SlooviCrudApiService.updateTask(id, data);
 
@@ -148,7 +146,7 @@ export const updateItem = (id: string, data: TaskProps) => async (dispatch: Disp
   }
 };
 
-export const deleteItem = (id:string) => async (dispatch: Dispatch<any>) => {
+export const deleteTask = (id:string) => async (dispatch: Dispatch<any>) => {
   try {
     await SlooviCrudApiService.deleteTask(id);
 
@@ -162,7 +160,7 @@ export const deleteItem = (id:string) => async (dispatch: Dispatch<any>) => {
 };
 
 
-export const findItemById = (id: string) => async (dispatch: Dispatch<any>) => {
+export const getTask = (id: string) => async (dispatch: Dispatch<any>) => {
   try {
     const res = await SlooviCrudApiService.getTask(id);
 

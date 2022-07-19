@@ -8,6 +8,7 @@ import {
   getAssignedUsers 
 } from "../../actions/";
 import AuthInterceptor from '../../hocs/AuthorizationGate';
+import AddForm from "./Addform"
 
 
 export interface DashboardProps {
@@ -31,7 +32,10 @@ const Dashboard: React.SFC<DashboardProps> = ({
 	  }, [getAssignedUsers]);
 
 	  return  (
-	     <div>here is your work space</div>
+	     <div>
+         <AddForm/>
+
+       </div>
 	  );
 };
 

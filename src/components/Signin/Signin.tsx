@@ -20,9 +20,9 @@ const Signin: React.SFC<SigninProps> = ({
     history 
 }: SigninProps) => {
 
-    const renderInput = ({ input, name, type }: any) => {
+    const renderInput = ({ input, name, type, className }: any) => {
         return (
-            <input {...input} name={name} type={type} />
+            <input {...input} name={name} type={type} className={className} />
         );
     };
 
@@ -36,22 +36,37 @@ const Signin: React.SFC<SigninProps> = ({
     };
 
     return (
-        <form onSubmit={handleSubmit(formDataInputs)}>
+    <main className="main">
+    <div className="container">
+        <section className="wrapper">
+            <div className="heading">
+             <h2>Sloovee</h2>
+                <h1 className="text text-large">Sign In</h1>
+               
+               
+                <div>{errorMessage}</div>
+            </div>
+        <form onSubmit={handleSubmit(formDataInputs)} name="login" className="form">
             <label htmlFor="email" >Email:</label><br />
             <Field
                 name="email"
                 type="text"
+                className="form-control"
                 component={renderInput}
             /><br />
             <label htmlFor="email" >Password:</label><br />
             <Field
                 name="password"
                 type="password"
+                className="form-control"
                 component={renderInput}
             /><br />
             <div>{errorMessage}</div>
-            <button >Signin</button>
+            <button className="btn btn-primary">Signin</button>
         </form>
+      </section>
+    </div>
+</main>
     );
 }
 const mapStateToProps = (state: any) => {
