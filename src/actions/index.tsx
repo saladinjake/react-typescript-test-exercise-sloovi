@@ -1,23 +1,22 @@
-import { AUTH_USER, AUTH_ERROR } from './types';
 import axios from 'axios';
 import { Dispatch } from 'react';
+import {
+  AUTH_USER, 
+  AUTH_ERROR,
+  FETCH_USERS_FAILURE,
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS
+} from "./types";
 
-interface ValuesProps {
+interface CredentialsProps {
     name: string;
     password: string;
 }
 
-
-/*
-company_id: "company_413ef22b6237417fb1fba7917f0f69e7"
-token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgyMzA4MzcsIm5iZiI6MTY1ODIzMDgzNywianRpIjoiNWJhOGYwYjMtYTViOC00NzUwLWE1YzktYjUzMmFhOWQ1ZDgwIiwiaWRlbnRpdHkiOnsibmFtZSI6IlN1bmRhciBQaWNoYWkiLCJlbWFpbCI6InNtaXRod2lsbHMxOTg5QGdtYWlsLmNvbSIsInVzZXJfaWQiOiJ1c2VyXzRlZTRjZjY3YWQ0NzRhMjc5ODhiYzBhZmI4NGNmNDcyIiwiaWNvbiI6Imh0dHA6Ly93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9jZjk0Yjc0YmQ0MWI0NjZiYjE4NWJkNGQ2NzRmMDMyYj9kZWZhdWx0PWh0dHBzJTNBJTJGJTJGczMuc2xvb3ZpLmNvbSUyRmF2YXRhci1kZWZhdWx0LWljb24ucG5nIiwiYnlfZGVmYXVsdCI6Im91dHJlYWNoIn0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.OCwxx4kumc5VBwQkzZayD4SlTz0K7Ko9tRSbD4rOevM"
-user_id: "user_4ee4cf67ad474a27988bc0afb84cf472"
-*/
-
-export const authAction = (values: ValuesProps, redirectTo: () => void) => {
+export const authAction = (credentials: CredentialsProps, redirectTo: () => void) => {
     return async (dispatch: Dispatch<any>) => {
         try {
-            const apiResponse = await axios.post("https://stage.api.sloovi.com/login", values);
+            const apiResponse = await axios.post("https://stage.api.sloovi.com/login", credentials);
 
             dispatch({ 
                type: AUTH_USER,
@@ -32,4 +31,53 @@ export const authAction = (values: ValuesProps, redirectTo: () => void) => {
             dispatch({ type: AUTH_ERROR, payload: "Not authorized" });
         }
     }
+};
+
+
+
+
+
+
+interface AssignedUsersProps {
+    username: string;
+    firstname: string;
+    lastname: string;
+}
+
+
+
+
+
+const fetchRequest = () => ({ type: FETCH_USERS_REQUEST });
+
+const fetchFailure = (error: string) => ({
+  type: FETCH_USERS_FAILURE,
+  payload: error,
+});
+
+const fetchSuccess = (users: AssignedUsersProps) => ({
+  type: FETCH_USERS_SUCCESS,
+  payload:  users ,
+});
+
+export const getAssignedUsers = () => async (dispatch : Dispatch<any>) => {
+  dispatch(fetchRequest());
+  try {
+    const company_id = localStorage.getItem("company_id");
+    const token = localStorage.getItem("access_token")
+    const  data  = await axios.get(
+      `https://stage.api.sloovi.com/team?product=outreach&company_id=${company_id}&user_id=user_4ee4cf67ad474a27988bc0afb84cf472`,{
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',          
+      }
+    });
+    console.log(data)
+   // const users = data.map((user : AssignedUsersProps) => ({ name: user.firstname + " " + user.lastname  }));
+    //dispatch(fetchSuccess(users));
+  } catch (error) {
+    console.log(error.message)
+    dispatch(fetchFailure(error.message));
+  }
 };
