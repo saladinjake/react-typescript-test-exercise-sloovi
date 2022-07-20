@@ -1,0 +1,126 @@
+
+
+.body-layout{
+  display:flex;
+  justify-content: center;
+
+}
+
+ 
+
+
+
+.horizontal-tabs{
+  height:40px;
+  border-bottom:2px solid #eaeaea;
+  display:flex;
+  flex:0.3;
+  justify-content: space-between;
+}
+
+.workspace{
+  display:flex;
+  flex:9.7;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+    background: #F0F0F0;
+
+}
+
+.spaced-form{
+    display:flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+
+.left-space{
+   flex:2;
+   height:100vh;
+   border-right:2px solid #eaeaea;
+} 
+
+.middle-space{
+   flex:6;
+   height:100vh;
+   
+
+}
+
+.right-space{
+   flex:2;
+  height:100vh;
+ 
+}
+
+
+
+
+
+
+.left-space-equal, .right-space-equal{
+  height:100vh;
+  flex:2;
+  border-right:2px solid #eaeaea;  
+}
+
+
+
+.main-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background:white;
+  margin-top:0px;
+  padding:10px;
+  margin-left:-23px;
+  margin-right:-23px;
+  
+
+}
+
+.main-flex-bare{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+
+.expanded-width{
+  margin:10px;
+}
+
+
+
+
+.form-hidden{
+  opacity:0;
+  height:0;
+  visibility:hidden;
+  
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    visibility: visible;
+    height:260px;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-form {
+   animation: fade 2s linear forwards;
+   height:280px;
+   opacity:1;
+   visibility:visible;
+}

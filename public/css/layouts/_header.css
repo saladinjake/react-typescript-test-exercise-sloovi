@@ -1,0 +1,139 @@
+:root {
+  --color-main: #f3950d;
+  --main-accent: #ffebcc;
+  --bg: #f5eedc;
+  --bg-2: #dce5ff;
+  --main: #292c6d;
+  --shadow: rgba(17, 17, 26, 0.1) 2px 0px 16px;
+
+  // Basic
+    --c-white: #fff;
+    --c-black: #000;
+
+    // Greys
+    --c-ash: #eaeef6;
+    --c-charcoal: #a0a0a0;
+    --c-void: #141b22;
+
+    // Beige/Browns
+    --c-fair-pink: #FFEDEC;
+    --c-apricot: #FBC8BE;
+    --c-coffee: #754D42;
+    --c-del-rio: #917072;
+
+    // Greens
+    --c-java: #1FCAC5;
+
+    // Purples
+    --c-titan-white: #f1eeff;
+    --c-cold-purple: #a69fd6;
+    --c-indigo: #6558d3;
+    --c-governor: #4133B7;
+}
+
+
+.nav-bar{
+  padding:3px;
+  display:flex;
+  justify-content: space-between;        
+}
+
+
+
+.hamburger-lines {
+    display: block;
+    height: 28px;
+    width: 15px;
+ 
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex:.5;
+  }
+
+   .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+  }
+
+   .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+   .hamburger-lines .line2 {
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+.left-component{
+   display:flex;
+ 
+    flex-basis:40%;
+   
+}
+
+.logo{
+  padding:2px;
+  margin:2px;
+  flex:2;
+
+}
+
+
+ .search-bar{
+  padding:2px;
+  margin:2px;
+  flex:5;
+    
+}
+
+.right-component{
+  display: flex;
+  flex-basis:60%;
+  justify-content: flex-end;
+}
+
+.icon1,.icon2,.icon3,.icon4,.icon5,.icon6, .hambugger{
+ display: inline-block;
+ background-color: var(--c-titan-white);
+ color: var(--c-indigo);
+ font-weight: 600;
+ font-size: 0.875rem;
+ padding: 0.5em 0.75em;
+ line-height: 1;
+ border-radius: 6px;
+}
+
+
+.button {
+  font: inherit;
+  line-height: 1;
+  background-color: var(--c-white);
+  border: 2px solid var(--c-indigo);
+  color: var(--c-indigo);
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-right:10px;
+
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--c-indigo);
+    color: var(--c-white);
+}

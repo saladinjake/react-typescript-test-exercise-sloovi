@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useState } from 'react';
 import { reduxForm, Field, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import { authAction } from "../../actions/index";
@@ -19,6 +19,7 @@ const Signin: React.SFC<SigninProps> = ({
     errorMessage, 
     history 
 }: SigninProps) => {
+   const [isLoading, setIsLoading] = useState(false)
 
     const renderInput = ({ input, name, type, className }: any) => {
         return (
@@ -27,10 +28,13 @@ const Signin: React.SFC<SigninProps> = ({
     };
 
     const formDataInputs = (credentials: { name: string; password: string }) => {
+         setIsLoading(true)
         sendData(credentials, () => {
+           setIsLoading(false)
            window.location.href="./dashboard"
         });
-      
+        setIsLoading(true)
+       
         resetFormFields();
 
     };
@@ -62,7 +66,9 @@ const Signin: React.SFC<SigninProps> = ({
                 component={renderInput}
             /><br />
             <div>{errorMessage}</div>
-            <button className="btn btn-primary">Signin</button>
+            {!isLoading ? (<button className="btn btn-primary">Signin</button>):
+             ( <button className="btn btn-large btn-primary" disabled><i className="fa fa-spinner"></i></button>)
+            }
         </form>
       </section>
     </div>

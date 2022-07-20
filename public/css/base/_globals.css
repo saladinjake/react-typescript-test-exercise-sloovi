@@ -13,6 +13,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: #fff;
+
 }
 html {
   position: relative;
@@ -66,62 +67,7 @@ b {
 .container {
   width: auto;
 }
-.container-alt {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
-#wrapper {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  color:#fff;
-  background:#000;
-}
-.page {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-/* Page titles */
-.page-title {
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  margin-top: 7px;
-  margin-left:40px;
-}
-.page-title-alt {
-  margin-bottom: 23px;
-  margin-top: 10px;
-}
-.page-header {
-  border-bottom: 1px solid #DBDDDE;
-  color:#fff;
-}
-.header-title {
-  text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  line-height: 16px;
-  margin-bottom: 8px;
-  color:#fff;
-}
-
-
-.content-page {
-  margin-left: 240px;
-  overflow: hidden;
-}
-.content-page > .content {
-  margin-bottom: 60px;
-  margin-top: 60px;
-  padding: 20px 5px 15px 5px;
-}
 
 .row {
   margin-right: -10px;
@@ -183,10 +129,17 @@ b {
 
 
 body {
-    background: #fbfbfd;
+    background: #eaeaea;
 }
 
-.new_footer_area {
-    background: #fbfbfd;
-}
+
+    
+
+
+
+
+       
+
+
+
 

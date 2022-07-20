@@ -60,7 +60,13 @@ const AddTask = (props: AddTaskProps) => {
 
 
 
-
+  const dropDownEffect = () =>{
+     const formTrigger = document.getElementById("formData") as HTMLButtonElement;
+     if (formTrigger != null) {
+       // 👉️ button has type HTMLElement here
+       formTrigger.classList.toggle("dropdown-form")
+     }
+  }
 
 
 
@@ -81,56 +87,99 @@ const AddTask = (props: AddTaskProps) => {
         ) : (
           <div>
 
-              <div className="Form">
-      <div className="form-wrapper">
-        <h1>Demo Form for React</h1>
-        <form className="form">
+
+
+
+          <main className="main dropdown-form">
+  <div className="container">
+    <section className="wrapper wrapper-reversed " id="toggleShow">
+      <div className=" main-flex">
+        <p className="text text-normal">Task 0</p>
+        <p onClick={() => dropDownEffect()} className="text text-normal"><i className="fa fa-plus fa-1x"></i></p>
+      </div>
+      <form name="login" id="formData" className="form form-hidden">
+        <div className="input-controlx">
+          <label  className="input-label expanded-width">Task Description</label>
           <input 
-            className="form-input"
+            className="input-field"
             name="task_msg" 
             value={inputValues?.task_msg || ''} 
             onChange={handleInputChange} 
             placeholder="Your Name"
             type="text"
-            data-testid="form-input-task_msg"
+            data-testid="input-field-task_msg"
           />
+        </div>
+   <div className="main-flex-bare">
+        <div className="input-controlx">
+          <label  className="input-label expanded-width">Date</label>
           <input 
-            className="form-input"
+            className="input-field"
             name="task_date" 
             value={inputValues?.task_date || ''} 
             onChange={handleInputChange} 
             placeholder="12/12/12" 
             type="date"
-            data-testid="form-input-task_date"
+            data-testid="input-field-task_date"
           />
-          <input 
-            className="form-input" 
+        </div>
+
+<div className="input-controlx">
+        <label  className="input-label expanded-width">Time</label>
+        <input 
+            className="input-field" 
             name="task_time"
             value={inputValues?.task_time || ''} 
             onChange={handleInputChange} 
             placeholder="10:02:03" 
             type="time"
-            data-testid="form-input-task_time"
+            data-testid="input-field-task_time"
           />
+    </div>
+
+</div>
+
+<div className="input-controlx">
+<label  className="input-label expanded-width">Assigned user</label>
           <input 
-            className="form-input"
+            className="input-field"
             name="time_zone"
             value={inputValues?.time_zone || ''} 
             onChange={handleInputChange} 
             placeholder="09:12:11" 
             type="number"
-            data-testid="form-input-time_zone"
+            data-testid="input-field-time_zone"
           />
+</div>
+<br/>
+        <div className="input-control spaced-form">
+          <div></div>
+          <div>
           <button 
-            className='form-submit'
+            className=''
+            data-testid="form-submit" 
+            style={{marginRight:"10px"}}
+            
+          >
+            Cancel
+          </button>
+          <button 
+            className='input-submit '
             data-testid="form-submit" 
             onClick={handleFormSubmit}
           >
             Submit
           </button>
-        </form>
-      </div>
-    </div>
+          </div>
+        </div>
+      </form>
+      
+      
+    </section>
+  </div>
+</main>
+
+              
             
           </div>
         )}

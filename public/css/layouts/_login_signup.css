@@ -100,12 +100,12 @@ img {
   outline: none;
   border-radius: 0.25rem;
   color: var(--color-black);
-  background: var(--color-white);
+
   box-shadow: var(--shadow-large);
 }
 .main .wrapper .form {
   width: 100%;
-  height: auto;
+  /*height: auto;*/
   margin-top: 2rem;
 }
 .main .wrapper .form .input-control {
@@ -197,3 +197,18 @@ img {
 .main .wrapper .method-action:hover {
   background: var(--color-light);
 }
+
+
+
+.wrapper-reversed, .main-reversed{
+  margin-top:-220px;
+  margin-left:-220px;
+  /*height:70px;*/
+  padding-top:-10px;
+  background:transparent;
+
+}
+
+
+
+

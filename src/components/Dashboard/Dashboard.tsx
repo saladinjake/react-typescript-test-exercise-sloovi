@@ -28,14 +28,171 @@ const Dashboard: React.SFC<DashboardProps> = ({
 	  
 	  //console.log(data)
 	  useEffect(() => {
-	    getAssignedUsers();
+	   // getAssignedUsers();
 	  }, [getAssignedUsers]);
 
 	  return  (
-	     <div>
-         <AddForm/>
+	     
+     <React.Fragment>
 
-       </div>
+       <div className="nav-bar">
+           <div className="left-component">
+              <div className="hambugger">
+                x
+              </div>
+              <div className="logo">
+                logo
+              </div>
+              <div className="search-bar search">
+                
+              </div>
+
+
+
+           </div>
+           <div className="right-component">
+                <div className="icon1">
+                </div>
+                <div className="icon1">
+                </div>
+                  <div className="icon2">
+                  </div>
+                  
+
+                  <div className="icon4">
+                  </div>
+                  <div className="icon5">
+                  </div>
+                  <div className="icon6">
+                  </div>
+
+
+               </div>
+
+      </div>
+
+
+
+      <div className="body-layout">
+
+         <div className="sidebar-iconic">
+              <div className="icon1">
+              </div>
+              <div className="icon2">
+              </div>
+              
+
+              <div className="icon4">
+              </div>
+              <div className="icon5">
+              </div>
+              <div className="icon6">
+              </div>
+
+
+              <div className="icon1">
+              </div>
+              <div className="icon2">
+              </div>
+              
+
+              <div className="icon4">
+              </div>
+              <div className="icon5">
+              </div>
+              <div className="icon6">
+              </div>
+              <div className="icon1">
+              </div>
+              <div className="icon2">
+              </div>
+              
+
+              <div className="icon4">
+              </div>
+              <div className="icon5">
+              </div>
+              <div className="icon6">
+              </div>
+         
+
+         </div>
+
+         <div className="body-widget">
+
+          
+                
+         <div className="horizontal-tabs">
+              <div className="left-component">
+                    <div className="icon2">
+                      
+                    </div>
+                    <div className="icon2">
+                      
+                    </div>
+
+                    <div className="icon2">
+                      
+                    </div>
+
+                    <div className="icon2">
+                      
+                    </div>
+                    <div className="icon2">
+                      
+                    </div>
+                    <div className="icon2">
+                      
+                    </div>
+                 </div>
+                 <div className="right-component">
+                 
+                  <div className="icon1">
+                    </div>
+                    <div className="icon2">
+                    </div>
+                    
+
+                    <div className="icon4">
+                    </div>
+                    <div className="icon5">
+                    </div>
+                    <div className="icon6">
+                    </div>
+
+                    <div className="icon2">
+                      
+                    </div>
+                    <div className="icon2">
+                      
+                    </div>
+                    <div className="icon2">
+                      
+                    </div>
+
+
+                 </div>
+
+
+         </div>
+
+         <div className="workspace">
+                   <div className="left-space-equal">
+
+                      <AddForm/>
+
+                   </div>
+                   <div className="right-space-equal">
+
+                   </div>
+                  
+         </div>
+
+    </div>
+
+  </div>
+
+</React.Fragment>
 	  );
 };
 
@@ -58,7 +215,8 @@ const mapDispatchToProps = (dispatch :Dispatch<any>) => ({
   getAssignedUsers: () => dispatch(getAssignedUsers()),
 });
 
-const DashboardAuthenticated = AuthInterceptor(Dashboard);
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardAuthenticated); 
+//const DashboardAuthenticated = AuthInterceptor(Dashboard);
+//export default connect(mapStateToProps, mapDispatchToProps)(DashboardAuthenticated);
+export default Dashboard 
 
  
