@@ -39,21 +39,19 @@
 
 .left-space{
    flex:2;
-   height:100vh;
+  
    border-right:2px solid #eaeaea;
 } 
 
 .middle-space{
    flex:6;
-   height:100vh;
    
 
 }
 
 .right-space{
    flex:2;
-  height:100vh;
- 
+  
 }
 
 
@@ -62,7 +60,7 @@
 
 
 .left-space-equal, .right-space-equal{
-  height:100vh;
+  
   flex:2;
   border-right:2px solid #eaeaea;  
 }
@@ -96,31 +94,3 @@
 
 
 
-
-.form-hidden{
-  opacity:0;
-  height:0;
-  visibility:hidden;
-  
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-  }
-  to { 
-    opacity: 1;
-    visibility: visible;
-    height:260px;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-form {
-   animation: fade 2s linear forwards;
-   height:280px;
-   opacity:1;
-   visibility:visible;
-}

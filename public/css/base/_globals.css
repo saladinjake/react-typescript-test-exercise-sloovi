@@ -128,8 +128,9 @@ b {
 
 
 
-body {
+body, html, .workspace {
     background: #eaeaea;
+    height:100vh;
 }
 
 

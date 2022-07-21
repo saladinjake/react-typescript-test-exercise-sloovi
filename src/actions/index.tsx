@@ -1,60 +1,68 @@
-import axios from 'axios';
-import { Dispatch } from 'react';
+import axios from "axios";
+import { Dispatch } from "react";
+//import axios from "../services/axios.services"
 import {
-  AUTH_USER, 
+  AUTH_USER,
   AUTH_ERROR,
-
-
   FETCH_USERS_FAILURE,
   FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
-
   CREATE_ITEM,
   RETRIEVE_ITEM,
   UPDATE_ITEM,
-  DELETE_ITEM
-
+  DELETE_ITEM,
 } from "./types";
 
 // CRUD API DISPATCHES
 import SlooviCrudApiService from "../services/crudeapi.services";
 
-
 // AUTHENTICATION  ACTION DISPATCHES
 interface CredentialsProps {
-    name: string;
-    password: string;
+  name: string;
+  password: string;
 }
 
-export const authAction = (credentials: CredentialsProps, redirectTo: () => void) => {
-    return async (dispatch: Dispatch<any>) => {
-        try {
-            const apiResponse = await axios.post("https://stage.api.sloovi.com/login", credentials);
+export const authAction = (
+  credentials: CredentialsProps,
+  redirectTo: () => void
+) => {
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      // var xhr = new XMLHttpRequest();
+      //xhr.withCredentials = false;
+      const data: string = JSON.stringify(credentials);
 
-            dispatch({ 
-               type: AUTH_USER,
-               payload: apiResponse.data.results.token
-            });
+      const responseApi = await fetch("login", {
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          credentials: "include",
+        },
+      });
 
-            console.log(apiResponse)
-            localStorage.setItem("token", apiResponse.data.results.token);
-            localStorage.setItem("company_id", apiResponse.data.results.company_id);
-            redirectTo();
-        } catch (error) {
-            dispatch({ type: AUTH_ERROR, payload: "Not authorized" });
-        }
+      const apiResponse = await responseApi.json();
+
+      dispatch({
+        type: AUTH_USER,
+        payload: apiResponse.data.results.token,
+      });
+
+      console.log(apiResponse);
+      localStorage.setItem("token", apiResponse.data.results.token);
+      localStorage.setItem("company_id", apiResponse.data.results.company_id);
+      redirectTo();
+    } catch (error) {
+      dispatch({ type: AUTH_ERROR, payload: "Not authorized" });
     }
+  };
 };
-
-
-
-
 
 // FETCH DROPDOWN USERS DISPATCHES
 interface AssignedUsersProps {
-    username: string;
-    firstname: string;
-    lastname: string;
+  username: string;
+  firstname: string;
+  lastname: string;
 }
 
 const fetchRequest = () => ({ type: FETCH_USERS_REQUEST });
@@ -64,59 +72,80 @@ const fetchFailure = (error: string) => ({
   payload: error,
 });
 
-const fetchSuccess = (users: AssignedUsersProps) => ({
+const fetchSuccess = (users: { name: string; company_id: string }[]) => ({
   type: FETCH_USERS_SUCCESS,
-  payload:  users ,
+  payload: users,
 });
 
-export const getAssignedUsers = () => async (dispatch : Dispatch<any>) => {
+export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
   dispatch(fetchRequest());
   try {
     const company_id = localStorage.getItem("company_id");
-    const token = localStorage.getItem("access_token")
-    const  data  = await axios.get(
-      `https://stage.api.sloovi.com/team?product=outreach&company_id=${company_id}`,{
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',          
+    const token = localStorage.getItem("token");
+
+    const responseApi = await fetch(
+      `team?product=outreach&company_id=${company_id}`,
+      {
+        method: "GET",
+
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          credentials: "include",
+          Authorization: "Bearer " + token,
+          Accept: "application/json",
+        },
       }
-    });
-    console.log(data)
-   // const users = data.map((user : AssignedUsersProps) => ({ name: user.firstname + " " + user.lastname  }));
-    //dispatch(fetchSuccess(users));
+    );
+
+    const apiResponse = await responseApi.json();
+
+    console.log(apiResponse.results.data);
+    let users: {
+      first: string;
+      company_id: string;
+      last: string;
+      user_id: string;
+    }[] = apiResponse.results.data;
+    const usersList: { name: string; company_id: string; user_id: string }[] =
+      users.map((user) => ({
+        name: user.first + " " + user.last,
+        company_id: user.company_id,
+        user_id: user.user_id,
+      }));
+
+    console.log(usersList);
+    dispatch(fetchSuccess(usersList));
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     dispatch(fetchFailure(error.message));
   }
 };
 
-
 // CRUD API DISPATCHES
-interface TaskProps{
-  assigned_user: string;   //<id value from /team api response >, 
-  task_date: string;  //<date in 'YYYY-MM-DD' format from date field in task>,
+interface TaskProps {
+  assigned_user: string; //<id value from /team api response >,
+  task_date: string; //<date in 'YYYY-MM-DD' format from date field in task>,
   task_time: number; //<time from time field in task>,integer ,(for ex=01:30am means 5400 seconds)
-  is_completed: boolean; //<0 or 1 integer data type>,
+  is_completed: number; //<0 or 1 integer data type>,
   time_zone: number; //<Give timezone value in seconds and data type is integer>,(for ex= +05:30 means 19800 seconds)
   task_msg: string; //<task description from task description field in task>
-}  
+}
 
+export const createTask =
+  (data: TaskProps) => async (dispatch: Dispatch<any>) => {
+    try {
+      const res = await SlooviCrudApiService.createTask(data);
 
-export const createTask = (data: TaskProps) => async (dispatch: Dispatch<any>) => {
-  try {
-    const res = await SlooviCrudApiService.createTask(data);
-
-    dispatch({
+      /*dispatch({
       type: CREATE_ITEM,
       payload: res.data,
-    });
+    });*/
 
-    return Promise.resolve(res.data);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-};
+      /*return Promise.resolve(res.data);*/
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
 
 export const getTasks = () => async (dispatch: Dispatch<any>) => {
   try {
@@ -131,22 +160,23 @@ export const getTasks = () => async (dispatch: Dispatch<any>) => {
   }
 };
 
-export const updateTask = (id: string, data: TaskProps) => async (dispatch: Dispatch<any>) => {
-  try {
-    const res = await SlooviCrudApiService.updateTask(id, data);
+export const updateTask =
+  (id: string, data: TaskProps) => async (dispatch: Dispatch<any>) => {
+    try {
+      const res = await SlooviCrudApiService.updateTask(id, data);
 
-    dispatch({
-      type: UPDATE_ITEM,
-      payload: data,
-    });
+      dispatch({
+        type: UPDATE_ITEM,
+        payload: data,
+      });
 
-    return Promise.resolve(res.data);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-};
+      return Promise.resolve(res.data);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
 
-export const deleteTask = (id:string) => async (dispatch: Dispatch<any>) => {
+export const deleteTask = (id: string) => async (dispatch: Dispatch<any>) => {
   try {
     await SlooviCrudApiService.deleteTask(id);
 
@@ -158,7 +188,6 @@ export const deleteTask = (id:string) => async (dispatch: Dispatch<any>) => {
     console.log(err);
   }
 };
-
 
 export const getTask = (id: string) => async (dispatch: Dispatch<any>) => {
   try {

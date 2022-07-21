@@ -1,6 +1,6 @@
 
 .sidebar-iconic{
-  height:650px;
+  height:100vh;
   overflow-y: scroll;
   overflow-x: hidden;
   border-right:2px solid #eaeaea;
@@ -10,7 +10,7 @@
   flex:1.7;             
   box-shadow: var(--shadow);
   transition: left 300ms;
-  background:darkblue;
+  background-color: rgb(31, 41, 55);
   margin-top:-40px;
 
 }

@@ -47,25 +47,6 @@ img {
   margin: 0 auto;
 }
 
-.ion-logo-apple {
-  font-size: 1.65rem;
-  line-height: inherit;
-  margin-right: 0.5rem;
-  color: var(--color-black);
-}
-.ion-logo-google {
-  font-size: 1.65rem;
-  line-height: inherit;
-  margin-right: 0.5rem;
-  color: var(--color-red);
-}
-.ion-logo-facebook {
-  font-size: 1.65rem;
-  line-height: inherit;
-  margin-right: 0.5rem;
-  color: var(--color-blue);
-}
-
 .text {
   font-family: inherit;
   line-height: inherit;
@@ -91,7 +72,7 @@ img {
   text-decoration: underline;
 }
 
-.main .wrapper {
+.main .wrapper, .main .wrapper2  {
   max-width: 28rem;
   width: 100%;
   margin: 2rem auto;
@@ -101,7 +82,15 @@ img {
   border-radius: 0.25rem;
   color: var(--color-black);
 
-  box-shadow: var(--shadow-large);
+ 
+}
+
+.wrapper{
+  background:#F0F8FF;
+}
+
+.wrapper-form-visible{
+   box-shadow: var(--shadow-large);
 }
 .main .wrapper .form {
   width: 100%;
@@ -126,7 +115,7 @@ img {
   outline: none;
   border-radius: 2rem;
   color: var(--color-black);
-  background: var(--color-light);
+  background: white;
   text-transform: unset;
   text-rendering: optimizeLegibility;
 }
@@ -200,15 +189,15 @@ img {
 
 
 
-.wrapper-reversed, .main-reversed{
-  margin-top:-220px;
-  margin-left:-220px;
-  /*height:70px;*/
-  padding-top:-10px;
-  background:transparent;
+
+
+.pickle-btn, .pickle-btn2{
+  cursor:pointer;
+  border-left:1px solid #666;
+  color:#666;
+  padding:4px 8px;
+  margin:0px;
+
 
 }
-
-
-
 
