@@ -16,7 +16,6 @@ import {
 // CRUD API class
 import SlooviCrudApiService from "../services/crudeapi.services";
 
-import Config from "../config"
 
 // AUTHENTICATION  ACTION DISPATCHES
 interface CredentialsProps {
