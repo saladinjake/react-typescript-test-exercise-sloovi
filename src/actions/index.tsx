@@ -34,7 +34,6 @@ export const authAction = (
   return async (dispatch: Dispatch<any>) => {
     try {
       const data: string = JSON.stringify(credentials);
-
       const responseApi = await fetch("login", {
         method: "POST",
         body: data,
