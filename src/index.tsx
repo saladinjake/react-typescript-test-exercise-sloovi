@@ -6,12 +6,20 @@ import App from "./App";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
+/*
+ * react starter kit for spa pages
+ * using redux store house for state mgt
+ */
 import rootReducer from "./reducers/index";
 import Home from "./components/Home/Home";
 import Signin from "./components/Signin/Signin";
 import Signout from "./components/Signout/Signout";
 import Dashboard from "./components/Dashboard/Dashboard";
 
+/*
+ *
+ * using redux store house for state mgt
+ */
 const store = createStore(
   rootReducer,
   {
@@ -22,6 +30,10 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
+/*
+ *
+ * dom renderer
+ */
 ReactDOM.render(
   <Provider store={store}>
     <Router>

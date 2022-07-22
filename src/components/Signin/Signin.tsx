@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { authAction } from "../../actions/index";
 import { History } from "history";
 
+/*
+ * @author: test code exercires
+ * Auth SIGNIN PAGE PROPS
+ */
+
 export interface SigninProps {
   handleSubmit: (p: any) => any;
   resetFormFields: () => void;
@@ -14,6 +19,11 @@ export interface SigninProps {
   errorMessage: string;
   history?: History;
 }
+
+/*
+ * @author: test code exercires
+ *  @desc:SIGN IN PAGE
+ */
 
 const Signin: React.SFC<SigninProps> = ({
   handleSubmit,
@@ -32,10 +42,14 @@ const Signin: React.SFC<SigninProps> = ({
     setIsLoading(true);
     sendData(credentials, () => {
       setIsLoading(false);
-      window.location.href = "./dashboard";
+      setTimeout(() => {
+        window.location.href = "./dashboard";
+      }, 5000);
     });
     setIsLoading(false);
-    window.location.href = "./dashboard";
+    setTimeout(() => {
+      window.location.href = "./dashboard";
+    }, 5000);
 
     resetFormFields();
   };

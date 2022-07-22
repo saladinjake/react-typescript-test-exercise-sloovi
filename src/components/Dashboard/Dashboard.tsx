@@ -1,12 +1,16 @@
 import React, { useEffect, Dispatch } from "react";
 import { connect, RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { getAssignedUsers } from "../../actions/";
+import { getAssignedUsers, getTasks } from "../../actions/";
 import AuthInterceptor from "../../hocs/AuthorizationGate";
 import AddTask from "./TaskEvent/Task";
 
 // we need this
 import { DefaultingRootState } from "../../reducers";
 
+/*
+ * @author: test code exercires
+ *  @desc: fAKE MOCK UP SAMPLE DESIGN TEMPLATE : NAV BAR COMPONENT
+ */
 const MockUpNavbar = () => {
   return (
     <div className="nav-bar">
@@ -28,6 +32,10 @@ const MockUpNavbar = () => {
   );
 };
 
+/*
+ * @author: test code exercires
+ *  @desc:fAKE MOCK UP SAMPLE DESIGN TEMPLATE : SIDE BAR COMPONENT
+ */
 const MockUpSidebar = () => {
   return (
     <div className="sidebar-iconic">
@@ -54,6 +62,10 @@ const MockUpSidebar = () => {
   );
 };
 
+/*
+ * @author: test code exercires
+ *  @desc:fAKE MOCK UP SAMPLE DESIGN TEMPLATE : NAV BAR COMPONENT
+ */
 const FakeToolBar = () => {
   return (
     <div className="horizontal-tabs">
@@ -83,31 +95,53 @@ const FakeToolBar = () => {
   );
 };
 
+/*
+ * @author: test code exercires
+ *  @desc: ASSIGNED USER PROPS
+ */
 interface userAssignment {
   name: string;
   company_id: string;
 }
 
+/*
+ * @author: test code exercires
+ *  @desc: SERVICE PROPS
+ */
 interface EnumServiceItems extends Array<userAssignment> {}
 
 export interface DashboardProps {
   data?: EnumServiceItems[];
   getAssignedUsers: () => void;
+  getTasks: () => void;
+  tasks?: Array<any>;
 }
 
-const Dashboard: React.SFC<DashboardProps> = ({ data, getAssignedUsers }) => {
+/*
+ * @author: test code exercires
+ *  @desc: USER DASHBOARD AFTER LOGIN
+ */
+const Dashboard: React.SFC<DashboardProps> = ({
+  data,
+  tasks,
+  getAssignedUsers,
+  getTasks,
+}) => {
   data = useSelector(
     (state: RootStateOrAny) => state.assignedUser.assignedUsers
   );
 
-  console.log(data);
+  tasks = useSelector((state: RootStateOrAny) => state);
 
-  console.log(data);
+  //console.log(tasks);
+
+  ////console.log(data);
   useEffect(() => {
     getAssignedUsers();
-  }, [getAssignedUsers]);
+    getTasks();
+  }, [getAssignedUsers, getTasks]);
 
-  console.log(data);
+  //console.log(data);
 
   return (
     <React.Fragment>
@@ -131,24 +165,43 @@ const Dashboard: React.SFC<DashboardProps> = ({ data, getAssignedUsers }) => {
   );
 };
 
+/*
+ * @author: test code exercires
+ *  @desc: STATE PROPS
+ */
 interface StateProps {
   auth: object;
   assignedUser: object;
   form: object;
 }
 
+/*
+ * @author: test code exercires
+ *  @desc: MAPPER FUNCTION TO MATCH STATE PROPS
+ */
 const mapStateToProps = (state: StateProps) => {
-  console.log(state);
-  const assignedUser = state.assignedUser;
-  console.log(state.assignedUser);
+  //console.log(state);
+  //const assignedUser = state.assignedUser;
+  ////console.log(state.assignedUser);
   return {
     data: state,
+    // tasks: state.todoReducers
   };
 };
+
+/*
+ * @author: test code exercires
+ *  @desc: MAPPER FUNCTION TO MAP DISPATCHERS TO ACTIONS
+ */
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   getAssignedUsers: () => dispatch(getAssignedUsers()),
+  getTasks: () => dispatch(getTasks()),
 });
 
+/*
+ * @author: test code exercires
+ *  @desc: EXPORTED REDUX AWEAR COMPONENT
+ */
 const DashboardAuthenticated = AuthInterceptor(Dashboard);
 export default connect(
   mapStateToProps,

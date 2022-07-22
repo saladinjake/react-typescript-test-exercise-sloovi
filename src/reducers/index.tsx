@@ -4,6 +4,11 @@ import assignedUsersReducer from "./assigned_users";
 import taskReducer from "./task";
 import { reducer as formReducer } from "redux-form";
 
+/*
+*@name: COMBINED REDUCERS
+*@desc: REDUCER STORE HOUSE
+
+*/
 const rootReducer = combineReducers({
   auth: authReducer,
   assignedUser: assignedUsersReducer,

@@ -10,11 +10,11 @@ interface TaskProps {
 }
 
 function toTimestamp(strDate: string) {
-  var datum: number = Date.parse(strDate);
-  return datum / 1000;
+  var datumDigits: number = Date.parse(strDate);
+  return datumDigits / 1000;
 }
 
-console.log(toTimestamp("+05:30"));
+//console.log(toTimestamp("+05:30"));
 
 const fakeData: TaskProps = {
   assigned_user: "iddd",
@@ -26,6 +26,10 @@ const fakeData: TaskProps = {
 };
 
 class SlooveeCrudeApiService {
+  /*@ METHOD: getTask
+   *@params: id: string
+   *@desc: fetches a lists of resources
+   */
   getTasks(): Promise<any> {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
@@ -44,6 +48,11 @@ class SlooveeCrudeApiService {
     );
   }
 
+  /*@METHOD: getTask
+   *@params: id: string
+   *@desc: fetch  a single resource
+   */
+
   getTask(id: string): Promise<any> {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
@@ -61,6 +70,11 @@ class SlooveeCrudeApiService {
       }
     );
   }
+
+  /*@METHOD: createTask
+   *@params: data: TaskProps
+   *@desc: updates a resource
+   */
 
   createTask(data: TaskProps): Promise<any> {
     const company_id = localStorage.getItem("company_id");
@@ -82,6 +96,11 @@ class SlooveeCrudeApiService {
     );
   }
 
+  /*@METHOD: updateTask
+   *@params: id: string, data: TaskProps
+   *@desc: updates a resource
+   */
+
   updateTask(id: string, data: TaskProps): Promise<any> {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
@@ -100,7 +119,10 @@ class SlooveeCrudeApiService {
       }
     );
   }
-
+  /*@method: deleteTask
+   *@params: id: string
+   *@desc: deletes a resource
+   */
   deleteTask(id: string): Promise<any> {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");

@@ -13,7 +13,7 @@ import {
   DELETE_ITEM,
 } from "./types";
 
-// CRUD API DISPATCHES
+// CRUD API class
 import SlooviCrudApiService from "../services/crudeapi.services";
 
 // AUTHENTICATION  ACTION DISPATCHES
@@ -22,14 +22,17 @@ interface CredentialsProps {
   password: string;
 }
 
+/*
+*@name: authenticator Actions
+*@desc: when dispatched would trigger user authentication
+
+*/
 export const authAction = (
   credentials: CredentialsProps,
   redirectTo: () => void
 ) => {
   return async (dispatch: Dispatch<any>) => {
     try {
-      // var xhr = new XMLHttpRequest();
-      //xhr.withCredentials = false;
       const data: string = JSON.stringify(credentials);
 
       const responseApi = await fetch("login", {
@@ -43,21 +46,23 @@ export const authAction = (
 
       const apiResponse = await responseApi.json();
 
+      //console.log(apiResponse.results);
+      localStorage.setItem("token", apiResponse.results.token);
+      localStorage.setItem("company_id", apiResponse.results.company_id);
+
       dispatch({
         type: AUTH_USER,
-        payload: apiResponse.data.results.token,
+        payload: apiResponse.results.token,
       });
+     // console.log("you are here");
 
-      console.log(apiResponse);
-      localStorage.setItem("token", apiResponse.data.results.token);
-      localStorage.setItem("company_id", apiResponse.data.results.company_id);
       redirectTo();
     } catch (error) {
+      console.log(error);
       dispatch({ type: AUTH_ERROR, payload: "Not authorized" });
     }
   };
 };
-
 // FETCH DROPDOWN USERS DISPATCHES
 interface AssignedUsersProps {
   username: string;
@@ -65,18 +70,38 @@ interface AssignedUsersProps {
   lastname: string;
 }
 
+/*
+*@name: admins fetches or assigned users
+*@desc: when dispatched would trigger list of assigned users
+
+*/
 const fetchRequest = () => ({ type: FETCH_USERS_REQUEST });
 
+/*
+*@name: admins fetches or assigned users
+*@desc: when dispatched would trigger failed results
+
+*/
 const fetchFailure = (error: string) => ({
   type: FETCH_USERS_FAILURE,
   payload: error,
 });
 
+/*
+*@name: admins fetches or assigned users
+*@desc: when dispatched would trigger list of assigned users
+
+*/
 const fetchSuccess = (users: { name: string; company_id: string }[]) => ({
   type: FETCH_USERS_SUCCESS,
   payload: users,
 });
 
+/*
+*@name: admins fetches or assigned users
+*@desc: action figures to get api data
+
+*/
 export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
   dispatch(fetchRequest());
   try {
@@ -99,7 +124,7 @@ export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
 
     const apiResponse = await responseApi.json();
 
-    console.log(apiResponse.results.data);
+    ////console.log(apiResponse.results.data);
     let users: {
       first: string;
       company_id: string;
@@ -113,10 +138,10 @@ export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
         user_id: user.user_id,
       }));
 
-    console.log(usersList);
+    ////console.log(usersList);
     dispatch(fetchSuccess(usersList));
   } catch (error) {
-    console.log(error.message);
+    ////console.log(error.message);
     dispatch(fetchFailure(error.message));
   }
 };
@@ -136,12 +161,14 @@ export const createTask =
     try {
       const res = await SlooviCrudApiService.createTask(data);
 
-      /*dispatch({
-      type: CREATE_ITEM,
-      payload: res.data,
-    });*/
+      const resolvedData = await res.json();
+      ////console.log(resolvedData)
+      dispatch({
+        type: CREATE_ITEM,
+        payload: resolvedData.results,
+      });
 
-      /*return Promise.resolve(res.data);*/
+      return Promise.resolve(res.results);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -150,13 +177,18 @@ export const createTask =
 export const getTasks = () => async (dispatch: Dispatch<any>) => {
   try {
     const res = await SlooviCrudApiService.getTasks();
+    ////console.log("has been called")
 
+    const resolvedData = await res.json();
+    ////console.log(resolvedData)
     dispatch({
       type: RETRIEVE_ITEM,
-      payload: res.data,
+      payload: resolvedData.results,
     });
+
+    return Promise.resolve(res.results);
   } catch (err) {
-    console.log(err);
+    ////console.log(err);
   }
 };
 
@@ -165,9 +197,13 @@ export const updateTask =
     try {
       const res = await SlooviCrudApiService.updateTask(id, data);
 
+      const resolvedData = await res.json();
+      //console.log("Api is reaching...")
+      //console.log(resolvedData.results)
+
       dispatch({
         type: UPDATE_ITEM,
-        payload: data,
+        payload: resolvedData.results,
       });
 
       return Promise.resolve(res.data);
@@ -176,18 +212,24 @@ export const updateTask =
     }
   };
 
-export const deleteTask = (id: string) => async (dispatch: Dispatch<any>) => {
-  try {
-    await SlooviCrudApiService.deleteTask(id);
+export const deleteTask =
+  (e: React.MouseEvent<HTMLElement>, id: string) =>
+  async (dispatch: Dispatch<any>) => {
+    try {
+      const res = await SlooviCrudApiService.deleteTask(id);
 
-    dispatch({
-      type: DELETE_ITEM,
-      payload: { id },
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+      const resolvedData = await res.json();
+
+      //console.log(resolvedData.results)
+
+      dispatch({
+        type: DELETE_ITEM,
+        payload: { id },
+      });
+    } catch (err) {
+      ////console.log(err);
+    }
+  };
 
 export const getTask = (id: string) => async (dispatch: Dispatch<any>) => {
   try {
@@ -198,6 +240,6 @@ export const getTask = (id: string) => async (dispatch: Dispatch<any>) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    ////console.log(err);
   }
 };

@@ -3,10 +3,19 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { History } from "history";
 
+/*
+ * @author: test code exercires
+ * Auth gate way props interface
+ */
 interface AuthenticatorGateWayProps {
   authorized: string;
   history?: History;
 }
+
+/*
+ * @author: test code exercires
+ *  @desc: Auth HOC FOR REUSABLE AUTHENTICATION AND REDIRECTIONS
+ */
 
 export default (ChildComponent: React.FC<any>) => {
   class AuthenticatorGateWay extends Component<AuthenticatorGateWayProps> {

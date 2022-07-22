@@ -12,6 +12,11 @@ interface ActionProps {
   payload: string;
 }
 
+/*
+*@name: AUTH REDUCER
+*@desc: when dispatched would trigger AUTHENTICATION OF USER
+
+*/
 export default function (
   state: StateProps = INITIAL_STATE,
   action: ActionProps

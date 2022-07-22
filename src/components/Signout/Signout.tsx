@@ -6,6 +6,11 @@ export interface SignoutProps {
   logout: () => void;
 }
 
+/*
+ * @author: test code exercires
+ *  @desc:lOGOUT FEAUTURE NOT ASKED TO IMLEMENT
+ */
+
 const Signout: React.SFC<SignoutProps> = ({ logout }) => {
   useEffect(() => {
     localStorage.removeItem("token");

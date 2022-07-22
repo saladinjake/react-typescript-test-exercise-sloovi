@@ -6,6 +6,10 @@ export interface HeaderProps {
   isAuth: string;
 }
 
+/*
+ * @author: test code exercires
+ * fAKE HEADER SAMPLE
+ */
 const Header: React.SFC<HeaderProps> = ({ isAuth }) => {
   const display = () => {
     if (isAuth) {

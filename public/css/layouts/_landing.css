@@ -87,6 +87,10 @@
 
 }
 
+.custom-space{
+  flex:0.5;
+}
+
 
 .expanded-width{
   margin:10px;
