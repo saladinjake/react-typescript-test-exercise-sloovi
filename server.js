@@ -1,16 +1,12 @@
-/*Load compiled build files on local server */
-const express = require('express');
-const path = require('path');
-const app = express();
-app.use(express.static(`${__dirname}/build/`));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './build/index.html'));
-});
-
-
-/*express instance runner up*/
-const PORT = process.env.PORT || 8000;
-const { log } = console;
-app.listen(PORT, () => {
-  log('Server started on port: ', PORT);
-});
+const { exec } = require('child_process');
+// process.env.PORT is defined by Heroku environment. Use 3200 as fallback if outside of Heroku.
+const port = process.env.PORT || 3200;
+console.log('Port: ' + port)
+const cmdStr = `.\\node_modules\\.bin\\serve -l ${ port} ./build`
+console.log(cmdStr)
+// Same as running ".\node_modules\.bin\serve -l 3200 ./build" in cmd
+exec(cmdStr, (err) => {
+  if (err) {
+    console.error('Something went wrong!', err)
+  }
+})
