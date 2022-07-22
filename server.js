@@ -24,7 +24,7 @@ app.get('*', function(request, response) {
   response.render('index.html');
 });
 
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT || 5000, '0.0.0.0', function() {
   if (process.env.DYNO) {
     console.log('This is on Heroku..!!');
     fs.openSync('/tmp/app-initialized', 'w');
