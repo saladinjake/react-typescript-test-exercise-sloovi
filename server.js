@@ -24,10 +24,10 @@ app.get('*', function(request, response) {
   response.render('index.html');
 });
 
-app.listen(app.get('port'), function() {
+app.listen(process.env.PORT || 5000, function() {
   if (process.env.DYNO) {
     console.log('This is on Heroku..!!');
     fs.openSync('/tmp/app-initialized', 'w');
   }
-  console.log('Node app is running on port', app.get('port'));
+  console.log('Node app is running on port', process.env.PORT || 5000);
 });
