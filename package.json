@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start:dev": "react-scripts start",
-    "start":"react-scripts build && node server.js",
+    "start":"react-scripts build && node index.js",
     "pre-start":"react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
