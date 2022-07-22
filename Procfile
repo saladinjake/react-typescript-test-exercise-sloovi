@@ -1,1 +1,1 @@
-web: bin/start-nginx node index
+web: bin/start-nginx node index.js
