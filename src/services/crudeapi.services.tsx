@@ -1,4 +1,6 @@
 import axios from "./axios.services";
+import Config from "../config/config"
+
 
 interface TaskProps {
   assigned_user: string; //<id value from /team api response >,
@@ -34,7 +36,7 @@ class SlooveeCrudeApiService {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    return fetch(
+    return fetch(Config.baseUrl +
       `/task/lead_465c14d0e99e4972b6b21ffecf3dd691?company_id=${company_id}`,
       {
         method: "GET",
@@ -57,7 +59,7 @@ class SlooveeCrudeApiService {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    return fetch(
+    return fetch(Config.baseUrl+
       `/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=${company_id}`,
       {
         method: "GET",
@@ -80,7 +82,7 @@ class SlooveeCrudeApiService {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    return fetch(
+    return fetch(Config.baseUrl+
       `/task/lead_465c14d0e99e4972b6b21ffecf3dd691?company_id=${company_id}`,
       {
         method: "POST",
@@ -105,7 +107,7 @@ class SlooveeCrudeApiService {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    return fetch(
+    return fetch(Config.baseUrl+
       `/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=${company_id}`,
       {
         method: "PUT",
@@ -127,7 +129,7 @@ class SlooveeCrudeApiService {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    return fetch(
+    return fetch(Config.baseUrl+
       `/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=${company_id}`,
       {
         method: "DELETE",
