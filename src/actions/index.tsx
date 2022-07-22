@@ -58,7 +58,7 @@ export const authAction = (
 
       redirectTo();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       dispatch({ type: AUTH_ERROR, payload: "Not authorized" });
     }
   };
