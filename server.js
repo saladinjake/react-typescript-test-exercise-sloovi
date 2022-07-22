@@ -6,6 +6,9 @@ app.use(express.static(`${__dirname}/build/`));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
+
+
+/*express instance runner up*/
 const PORT = process.env.PORT || 8000;
 const { log } = console;
 app.listen(PORT, () => {
