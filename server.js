@@ -20,9 +20,9 @@ app.get('*', function(request, response) {
   response.render('index.html');
 });
 
-app.listen(process.env.PORT || 5000, '0.0.0.0', function() {
+app.listen(PORT, function() {
   if (process.env.DYNO) {
-    console.log('This is on Heroku..!!');
+    console.log('This service is only available on heroku..!!');
     fs.openSync('/tmp/app-initialized', 'w');
   }
   console.log('Node app is running on port', process.env.PORT || 5000);
