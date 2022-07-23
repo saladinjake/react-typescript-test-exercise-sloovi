@@ -5,7 +5,11 @@ var fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+const cors = require("cors");
+
 app.use(express.static(`${__dirname}/build/`));
+
+app.use(cors())
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
