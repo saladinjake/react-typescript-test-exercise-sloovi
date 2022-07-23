@@ -21,4 +21,13 @@
 - heroku logs --tail (if error exists try fixing it)
 - heroku open
 
-- Best Regards
+deployment
+
+
+Its suggested that you have Docker installed on your local machine to properly test out images. However, since Heroku builds the images based off heroku.yml and the Dockerfile here, it isn't necessary.
+
+heroku create
+
+heroku stack:set container
+
+git push heroku master
