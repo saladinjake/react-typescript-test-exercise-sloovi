@@ -3,23 +3,23 @@ const express = require('express');
 const path = require('path');
 var fs = require('fs');
 const app = express();
-
-// app.use(express.static(`${__dirname}/build/`));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './build/index.html'));
-// });
-
-
 const PORT = process.env.PORT || 8000;
 
-
-
-app.set('views', __dirname + '/build');
-
-app.get('*', function(request, response) {
-  response.render('index.html');
-  //res.sendFile(path.resolve(__dirname, './build/index.html'));
+app.use(express.static(`${__dirname}/build/`));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
+
+
+
+
+
+// app.set('views', __dirname + '/build');
+
+// app.get('*', function(request, response) {
+//   response.render('index.html');
+//   //res.sendFile(path.resolve(__dirname, './build/index.html'));
+// });
 
 app.listen(PORT, function() {
   if (process.env.DYNO) {
