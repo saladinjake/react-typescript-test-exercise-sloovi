@@ -1,6 +1,8 @@
 # Get Nginx image from Docker hub
 FROM nginx
 
+FROM node:10
+
 # Copy our configuration file to nginx path
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
@@ -24,17 +26,23 @@ RUN bash nodesource_setup.sh
 # install nodejs and npm
 RUN apt install nodejs -y
 
+
+
+
 # Change work dir
 WORKDIR /usr/src/app
 
 # Copy everything 
 COPY . .
-
 # Do a clean install based on package-lock file
 RUN npm ci
-
 # Build frontend
 RUN npm run build
-
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
 EXPOSE $PORT
+
+
+
+
+
+

@@ -36,7 +36,7 @@ export const authAction = (
     try {
       const data: string = JSON.stringify(credentials);
 
-      const responseApi = await fetch(Config.baseUrl +"login", {
+      const responseApi = await fetch("login", {
         method: "POST",
         body: data,
         headers: {
@@ -109,7 +109,7 @@ export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
     const company_id = localStorage.getItem("company_id");
     const token = localStorage.getItem("token");
 
-    const responseApi = await fetch(Config.baseUrl +
+    const responseApi = await fetch(
       `team?product=outreach&company_id=${company_id}`,
       {
         method: "GET",
