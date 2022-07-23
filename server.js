@@ -11,13 +11,14 @@ const app = express();
 
 
 const PORT = process.env.PORT || 8000;
-const { log } = console;
+
 
 
 app.set('views', __dirname + '/build');
 
 app.get('*', function(request, response) {
   response.render('index.html');
+  //res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
 
 app.listen(PORT, function() {
@@ -25,5 +26,8 @@ app.listen(PORT, function() {
     console.log('This service is only available on heroku..!!');
     fs.openSync('/tmp/app-initialized', 'w');
   }
-  console.log('Node app is running on port', process.env.PORT || 5000);
+  console.log('Node app is running on port', process.env.PORT || 8000);
 });
+
+
+export default app;
