@@ -74,7 +74,7 @@ class SlooveeCrudeApiService {
 
   /*@METHOD: createTask
    *@params: data: TaskProps
-   *@desc: updates a resource
+   *@desc: creates a resource
    */
 
   createTask(data: TaskProps): Promise<any> {

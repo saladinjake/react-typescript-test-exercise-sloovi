@@ -7,7 +7,7 @@ export interface SignupProps {
 const Signup: React.SFC<SignupProps> = () => {
     return (
         <div>
-            Signup
+            Signup: Not asked to implement this
         </div>
     );
 };
