@@ -1,5 +1,5 @@
 import axios from "./axios.services";
-import config from "../config/config"
+import Config from "../config/config"
 
 interface TaskProps {
   assigned_user: string; //<id value from /team api response >,
