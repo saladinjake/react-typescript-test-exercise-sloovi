@@ -11,10 +11,7 @@ const App: React.FC<AppProps> = ({ children }: AppProps) => {
       <Header />
       {children}
     </div>
-
   );
-
-
 };
 
 export default App;
