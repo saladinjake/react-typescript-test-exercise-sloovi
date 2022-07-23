@@ -40,3 +40,25 @@ describe('handles singleRecordRequest', () => {
 
 
 });
+
+
+
+
+describe('handles Task request', () => {
+
+  const store = mockStore();
+
+  it('should dispatch a successful signup action', () => {
+    const mockData = {
+      records: [{}]
+    };
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+      data: mockData
+    }));
+
+    return store.dispatch(actions.redFlagRequest())
+      .then(() => {
+        expect(store.getActions()).toMatchSnapshot();
+      });
+  });
+});
