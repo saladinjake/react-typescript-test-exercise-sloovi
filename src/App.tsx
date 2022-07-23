@@ -12,6 +12,7 @@ const App: React.FC<AppProps> = ({ children }: AppProps) => {
       {children}
     </div>
   );
+  
 };
 
 export default App;
