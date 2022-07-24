@@ -6,5 +6,5 @@ interface Config{
 
 
 export default {
-	baseUrl: process.env.NODE_ENV=="development" ? "": "api"  
+	baseUrl: process.env.NODE_ENV=="development" ? "": "api/"  
 }
