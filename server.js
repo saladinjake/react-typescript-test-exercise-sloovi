@@ -21,7 +21,6 @@ app.get('*', (req, res) => {
 
 
 
-
 // app.set('views', __dirname + '/build');
 
 // app.get('*', function(request, response) {

@@ -8,7 +8,7 @@ server {
   }
  
   # Redirect requests made to /api
-  location / {
+  location /api/ {
     proxy_pass https://stage.api.sloovi.com/;
   }
 }
