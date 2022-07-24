@@ -1,5 +1,13 @@
 ## deploying with ngix acting as proxy steps
 
+
+
+## Heroku Deploy
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+
+
 ## step 1
 - heroku login
 - git remote rm heroku 
