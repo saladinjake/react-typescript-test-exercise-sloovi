@@ -6,5 +6,5 @@ interface Config{
 
 
 export default {
-	baseUrl: process.env.NODE_ENV=="development" ? "": "https://cors-anywhere.herokuapp.com/https://stage.api.sloovi.com"  
+	baseUrl: process.env.NODE_ENV=="development" ? "": "https://stage.api.sloovi.com"  
 }
