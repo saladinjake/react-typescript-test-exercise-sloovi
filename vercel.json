@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:login*",
+      "destination": "https://stage.api.sloovi.com/:login*"
+    },
+    {
+      "source": "/api/:task*/",
+      "destination": "https://stage.api.sloovi.com/:task*/"
+    }
+  ]
+}
