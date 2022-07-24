@@ -15,12 +15,12 @@ const proxyConfig = {
   },
 };
 
-const cors = require("cors");
+//const cors = require("cors");
 
 app.use(express.static(`${__dirname}/build/`));
 //app.use(cors())
  // All routes starting with /api have this proxy middleware applied
-app.use(createProxyMiddleware('/api/*', proxyConfig));
+//app.use(createProxyMiddleware('/api/*', proxyConfig));
 
 
 app.get('*', (req, res) => {
