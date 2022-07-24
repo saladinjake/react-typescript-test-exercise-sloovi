@@ -13,6 +13,7 @@
 - git remote rm heroku 
 - heroku create --app sloovi-takehome-exercise
 -  git add .
+
 - git commit -m "deploy works"
 - git push origin master
 - git push heroku master
