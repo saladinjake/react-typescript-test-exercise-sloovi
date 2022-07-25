@@ -5,15 +5,17 @@
 #proxy_set_header Proxy "";
 
 
-
-
-
-
-worker_processes  auto;
+# Heroku dynos have at least 4 cores
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 events {
-    worker_connections  8192;
+    use epoll;
+    accept_mutex on;
+    worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
 }
+
+
+
 
 http {
     upstream nodeserver_upstream {
@@ -33,12 +35,31 @@ http {
         gzip_proxied expired no-cache no-store private auth;
         gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
+
+         gzip on;
+        gzip_comp_level 2;
+   
+        server_tokens off;
+
+       
+         access_log /dev/stdout main;
+           # set the following to "debug" when diagnosing an issue
+          error_log /dev/stdout notice;
+         log_not_found on;
+
+         include mime.types;
+         default_type application/octet-stream;
+          sendfile on;
+
+        # Must read the body in 5 seconds.
+        client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>;
+
         # # angular index.html location
         location / {
             try_files $uri $uri/ /index.html;
         }
         # # potential reverse proxy for sending api calls
-        location /api/ {
+        location / {
             proxy_set_header Host $host;
             proxy_set_header Content-Type application/json;
             proxy_set_header X-Real-IP $remote_addr;
