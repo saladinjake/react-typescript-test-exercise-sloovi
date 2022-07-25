@@ -44,6 +44,7 @@ class SlooveeCrudeApiService {
           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+            'Access-Control-Allow-Origin':'*'
         },
       }
     );
@@ -67,6 +68,7 @@ class SlooveeCrudeApiService {
           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+            'Access-Control-Allow-Origin':'*'
         },
       }
     );
@@ -91,6 +93,7 @@ class SlooveeCrudeApiService {
           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+            'Access-Control-Allow-Origin':'*'
         },
         body: JSON.stringify(data),
       }
@@ -115,6 +118,7 @@ class SlooveeCrudeApiService {
           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+            'Access-Control-Allow-Origin':'*'
         },
         body: JSON.stringify(data),
       }
@@ -137,6 +141,7 @@ class SlooveeCrudeApiService {
           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+            'Access-Control-Allow-Origin':'*'
         },
       }
     );

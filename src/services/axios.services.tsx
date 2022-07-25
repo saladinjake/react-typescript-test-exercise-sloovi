@@ -10,7 +10,7 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 axios.defaults.headers.common["crossdomain"] = true;
 axios.defaults.headers.common["Access-Control-Allow-Methods"] =
   "GET,PUT,POST,DELETE,PATCH,OPTIONS";
-axios.defaults.headers.common["withCredentials"] = false;
+axios.defaults.headers.common["withCredentials"] = true;
 const instance = axios.create({
   baseURL,
 });

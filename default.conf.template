@@ -1,0 +1,25 @@
+server {
+  # Listen to port defined by Heroku
+  listen $PORT default_server;
+
+  upstream frontend {
+    server https://sloovee-example.herokuapp.com;
+  }
+
+  upstream backend {
+    server https://stage.api.sloovi.com/;
+  }
+ 
+  # Serve static files for requests made to /
+  location / {        
+    root /usr/src/app/build;
+    index index.html index.htm;
+  }
+ 
+  # Redirect requests made to /api
+  location ^~/api/ {
+    rewrite ^/api/(.*)$ /$1 break;
+    proxy_pass https://stage.api.sloovi.com;
+    proxy_set_header Host https://stage.api.sloovi.com;
+  }
+}

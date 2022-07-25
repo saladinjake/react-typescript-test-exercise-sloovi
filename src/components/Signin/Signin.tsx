@@ -43,12 +43,12 @@ const Signin: React.SFC<SigninProps> = ({
     sendData(credentials, () => {
       setIsLoading(false);
       setTimeout(() => {
-        window.location.href = "./dashboard";
+        //window.location.href = "./dashboard";
       }, 5000);
     });
     setIsLoading(false);
     setTimeout(() => {
-      window.location.href = "./dashboard";
+     // window.location.href = "./dashboard";
     }, 5000);
 
     resetFormFields();

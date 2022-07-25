@@ -42,7 +42,11 @@ export const authAction = (
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           credentials: "include",
+            'Access-Control-Allow-Origin':'*'
+
         },
+
+
       });
 
       const apiResponse = await responseApi.json();
@@ -116,9 +120,10 @@ export const getAssignedUsers = () => async (dispatch: Dispatch<any>) => {
 
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-          credentials: "include",
+           credentials: "include",
           Authorization: "Bearer " + token,
           Accept: "application/json",
+          'Access-Control-Allow-Origin':'*'
         },
       }
     );

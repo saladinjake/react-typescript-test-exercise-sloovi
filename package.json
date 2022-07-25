@@ -34,7 +34,7 @@
   "scripts": {
     "start:dev": "react-scripts start",
     "postinstall": "npm run build",
-    "start": "node server.js",
+    "start": "set NODE_ENV=production && node server.js",
     "pre-start": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -57,4 +57,6 @@
     ]
   },
   "proxy": "https://stage.api.sloovi.com/"
+
+  
 }

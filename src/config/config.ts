@@ -6,7 +6,7 @@ interface Config{
 
 
 export default {
-	baseUrl: process.env.NODE_ENV=="development" ? "": "https://enhancer-api-cors.herokuapp.com/https://stage.api.sloovi.com/", 
+	baseUrl: process.env.NODE_ENV=="development" ? "": "/api/", 
 	demoToken: ``,
 	demo_company_id: ``  
 }
