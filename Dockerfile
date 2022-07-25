@@ -1,11 +1,13 @@
 # Get Nginx image from Docker hub
-FROM nginx
+FROM nginx:1.17.8-alpine
 
 FROM node:10
 
 # Copy our configuration file to nginx path
 
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+#COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Configure Nginx port for heroku
 CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
@@ -43,7 +45,7 @@ RUN npm run build
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
 EXPOSE $PORT
 
-
+CMD node server.js
 
 
 
