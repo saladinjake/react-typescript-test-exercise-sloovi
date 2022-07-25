@@ -1,6 +1,7 @@
 ## deploying with ngix acting as proxy steps
-
-
+- heroku login
+- heroku create --app sloovi-takehome-exercise
+heroku stack:set container --app takehoem-exercise
 
 ## Heroku Deploy
 
@@ -30,4 +31,4 @@
 - heroku logs --tail (if error exists try fixing it)
 - heroku open
 
-- Best Regards
+- Best Regards web: nginx -g deamon\ off\;
