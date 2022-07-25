@@ -22,14 +22,14 @@ const proxyConfig = {
 app.use(express.static(`${__dirname}/build/`));
 //app.use(cors())
  // All routes starting with /api have this proxy middleware applied
-//app.use(createProxyMiddleware('/api/*', proxyConfig));
+app.use(createProxyMiddleware('/api/*', proxyConfig));
 
 
 // const proxy=require('http-proxy-middleware');
 // module.exports = function(app) {
 //     app.use(proxy('/api/login',{target:'https://stage.api.sloovi.com/login'})),
 //     app.use(proxy('/api/teams',{target:'https://stage.api.sloovi.com/teams'})),
-//     app.use(proxy('/api/task',{target:'https://stage.api.sloovi.com/task'}))
+//     app.use(proxy('/api/task',{target:'https://stage.api.sloovi.com'}))
 // }
 
 
