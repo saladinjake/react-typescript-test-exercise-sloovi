@@ -24,6 +24,10 @@ app.use(express.static(`${__dirname}/build/`));
  // All routes starting with /api have this proxy middleware applied
 app.use(createProxyMiddleware('/api/*', proxyConfig));
 
+app.use(createProxyMiddleware('/api/login', proxyConfig));
+app.use(createProxyMiddleware('/api/team/*', proxyConfig));
+app.use(createProxyMiddleware('/api/task/*', proxyConfig));
+
 
 // const proxy=require('http-proxy-middleware');
 // module.exports = function(app) {
