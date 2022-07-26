@@ -2,9 +2,6 @@ FROM nginx
 
 FROM node:10
 
-
-
-
 # Update available packages in Debian
 RUN apt-get update
 
@@ -21,10 +18,8 @@ RUN bash nodesource_setup.sh
 RUN apt install nodejs -y
 
 
-# Copy everything 
-COPY . .
-# Do a clean install based on package-lock file
-RUN npm ci
+
+
 # Build frontend
 RUN npm run build
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
