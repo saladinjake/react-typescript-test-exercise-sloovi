@@ -28,7 +28,7 @@ const fakeData: TaskProps = {
 
 class SlooveeCrudeApiService {
   /*@ METHOD: getTask
-   *@params: id: string
+   *@params: 
    *@desc: fetches a lists of resources
    */
   getTasks(): Promise<any> {
