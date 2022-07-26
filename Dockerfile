@@ -8,6 +8,9 @@ RUN apt-get update
 # Install curl cmd line tool
 RUN apt-get install curl -y
 
+# Change work dir
+WORKDIR /usr/src/app
+
 # Fetch latest node v10.x from nodesource
 RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
 
