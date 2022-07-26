@@ -1,6 +1,6 @@
 # Get Nginx image from Docker hub
 FROM nginx
-FROM nodejs
+FROM node:10
 # Copy our configuration file to nginx path
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
