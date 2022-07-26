@@ -27,11 +27,6 @@ RUN apt install nodejs -y
 # Change work dir
 WORKDIR /usr/src/app
 
-# Copy everything 
-COPY . .
-
-# Do a clean install based on package-lock file
-RUN npm ci
 
 # Build frontend
 RUN npm run build
@@ -43,4 +38,4 @@ COPY build/ /usr/share/nginx/html
 EXPOSE $PORT
 
 
-RUN docker run --rm -d -p $PORT applicatiion:service
+RUN docker run --rm -d -p $PORT application:service
