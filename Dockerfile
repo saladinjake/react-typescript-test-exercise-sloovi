@@ -42,5 +42,3 @@ COPY build/ /usr/share/nginx/html
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
 EXPOSE $PORT
 
-
-RUN docker run --rm -d -p $PORT application:service
