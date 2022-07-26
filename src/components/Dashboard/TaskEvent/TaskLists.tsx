@@ -271,7 +271,7 @@ const secondsToTime = (str:string): string =>{
    */
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log("delete called");
+   // console.log("delete called");
     await props.handleDelete(e, id);
     setDomAutoRefresh(Math.random() * 100 + Math.floor(Math.random() * 4));
   };
