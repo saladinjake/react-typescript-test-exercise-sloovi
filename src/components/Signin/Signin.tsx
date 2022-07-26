@@ -44,12 +44,12 @@ const Signin: React.SFC<SigninProps> = ({
       setIsLoading(false);
       setTimeout(() => {
           setIsLoading(true);
-        window.location.href = "./dashboard";
+       // window.location.href = "./dashboard";
       }, 5000);
     });
     
     setTimeout(() => {
-     window.location.href = "./dashboard";
+    // window.location.href = "./dashboard";
     }, 5000);
     setIsLoading(false);
 
