@@ -1,6 +1,6 @@
 # Get Nginx image from Docker hub
 FROM nginx
-
+FROM nodejs
 # Copy our configuration file to nginx path
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
@@ -27,6 +27,11 @@ RUN apt install nodejs -y
 # Change work dir
 WORKDIR /usr/src/app
 
+# Copy everything 
+COPY . .
+
+# Do a clean install based on package-lock file
+RUN npm ci
 
 # Build frontend
 RUN npm run build
