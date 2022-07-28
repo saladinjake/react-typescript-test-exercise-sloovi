@@ -4,7 +4,7 @@ FROM nginx:1.21.6
 #FROM node:10
 # Copy our configuration file to nginx path
 
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY default.conf.template /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Update available packages in Debian
