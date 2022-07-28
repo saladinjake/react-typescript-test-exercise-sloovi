@@ -5,7 +5,6 @@
     server {
         #listen $PORT default_server;
         listen 80 default_server;
-        listen [::]:80 default_server;
         listen 0.0.0.0:8080;
         server_name  localhost;
 
