@@ -29,6 +29,7 @@
     "redux": "^4.0.5",
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
+    "serve": "^14.0.1",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -57,6 +58,4 @@
     ]
   },
   "proxy": "https://stage.api.sloovi.com/"
-
-  
 }

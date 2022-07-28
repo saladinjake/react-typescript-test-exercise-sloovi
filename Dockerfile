@@ -1,6 +1,6 @@
 #!/bin/sh
 # Get Nginx image from Docker hub
-FROM nginx
+FROM nginx:1.21.6
 #FROM node:10
 # Copy our configuration file to nginx path
 
