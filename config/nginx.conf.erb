@@ -42,13 +42,16 @@ http {
             index  index.html index.htm;
         }
 
-  location /api/ {
-      proxy_set_header X-Forwarded-Host $host;
+  
+
+  location ~ ^/api(/?)(.*) {
+   proxy_set_header X-Forwarded-Host $host;
       proxy_set_header X-Forwarded-Server $host;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      rewrite ^/api(.*)$ $1 break;
-
-      proxy_pass https://stage.api.sloovi.com/;
+      
+    proxy_pass https://stage.api.sloovi.com/$2;
   }
+
+
   }
 }
