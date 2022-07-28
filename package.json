@@ -2,7 +2,7 @@
   "name": "r-t-a",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -34,7 +34,7 @@
   "scripts": {
     "start:dev": "react-scripts start",
     "postinstall": "npm run build",
-    "start": "NODE_ENV=production",
+    "start": "",
     "pre-start": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
