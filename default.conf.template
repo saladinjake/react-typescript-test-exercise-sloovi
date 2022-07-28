@@ -1,7 +1,7 @@
 
-    upstream nodeserver_upstream {
-        server https://final-demo-exercise.herokuapp.com/;
-    }
+    #upstream nodeserver_upstream {
+    #    server https://final-demo-exercise.herokuapp.com/;
+    #}
     server {
         listen $PORT default_server;
         server_name  localhost;
