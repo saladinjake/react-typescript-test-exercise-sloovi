@@ -3,7 +3,7 @@
     #    server https://final-demo-exercise.herokuapp.com/;
     #}
     server {
-        listen $PORT;
+        listen ENV["PORT"];
         #listen 80 default_server;
         #listen 0.0.0.0:8080;
         server_name  localhost;
