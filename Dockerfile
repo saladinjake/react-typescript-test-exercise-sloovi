@@ -14,7 +14,7 @@ RUN apt-get update
 # Configure Nginx port for heroku
 #CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/nginx.conf" && nginx -g 'daemon off;'
 
 #RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf
 
