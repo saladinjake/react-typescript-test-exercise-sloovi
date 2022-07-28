@@ -34,7 +34,7 @@
   "scripts": {
     "start:dev": "react-scripts start",
     "postinstall": "npm run build",
-    "start": "set NODE_ENV=production && node server.js",
+    "start": "NODE_ENV=production",
     "pre-start": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
