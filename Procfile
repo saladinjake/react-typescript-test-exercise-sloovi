@@ -1,2 +1,2 @@
-web: bin/start-nginx-solo   build/index.html
+web: bin/start-nginx-solo  
 
