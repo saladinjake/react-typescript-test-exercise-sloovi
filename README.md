@@ -2,6 +2,7 @@
 - heroku login
 $ heroku buildpacks:clear
 $ heroku buildpacks:add heroku/nodejs
+heroku buildpacks:add heroku-community/nginx
 $ heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-nginx.git
 
 #### heroku buildpacks:add heroku-community/nginx
