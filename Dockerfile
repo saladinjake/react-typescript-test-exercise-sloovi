@@ -4,10 +4,10 @@ FROM node:10
 # Copy our configuration file to nginx path
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Configure Nginx port for heroku
 CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
-
 
 # Update available packages in Debian
 RUN apt-get update
