@@ -1,6 +1,10 @@
 ## deploying with ngix acting as proxy steps
 - heroku login
-- heroku buildpacks:add heroku-community/nginx
+$ heroku buildpacks:clear
+$ heroku buildpacks:add heroku/nodejs
+$ heroku buildpacks:add https://github.com/hone/heroku-buildpack-static
+
+#### heroku buildpacks:add heroku-community/nginx
 - heroku create --app sloovi-takehome-exercise
 heroku stack:set container --app takehoem-exercise
 
