@@ -1,7 +1,7 @@
 #!/bin/sh
 # Get Nginx image from Docker hub
 FROM nginx:1.21.6
-#FROM node:10
+FROM node:10
 # Copy our configuration file to nginx path
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf
@@ -14,7 +14,7 @@ RUN apt-get update
 # Configure Nginx port for heroku
 #CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
-RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf
+RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf
 
 # Install curl cmd line tool
 #RUN apt-get install curl -y
@@ -29,7 +29,7 @@ RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf
 #RUN apt install nodejs -y
 
 # Change work dir
-#WORKDIR /usr/src/app
+WORKDIR /usr/src/app
 
 # Copy everything 
 #COPY . .
