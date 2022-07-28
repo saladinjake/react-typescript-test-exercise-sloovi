@@ -1,5 +1,5 @@
 # Get Nginx image from Docker hub
-FROM nginx
+FROM nginx:alphine
 FROM node:10
 # Copy our configuration file to nginx path
 
