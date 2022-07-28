@@ -21,6 +21,7 @@ CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/ngin
 # Install curl cmd line tool
 #RUN apt-get install curl -y
 
+
 # Fetch latest node v10.x from nodesource
 #RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
 
