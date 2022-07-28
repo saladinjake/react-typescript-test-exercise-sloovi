@@ -56,7 +56,7 @@ app.get('*', (req, res) => {
 app.listen(PORT || 3000, function() {
   if (process.env.DYNO) {
     console.log('This service is only available on heroku..!!');
-    fs.openSync('/tmp/app-initialized', 'w');
+    fs.closeSync(fs.openSync('/tmp/app-initialized', 'w'))
   }
   console.log('Node app is running on port', process.env.PORT || 3000);
 });
