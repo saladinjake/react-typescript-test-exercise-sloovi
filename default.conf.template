@@ -19,7 +19,7 @@ events {
 
 http {
     upstream nodeserver_upstream {
-        server https://takehome-exercise.herokuapp.com/;
+        server https://final-demo-exercise.herokuapp.com/;
     }
     server {
         listen $PORT default_server;
@@ -56,7 +56,7 @@ http {
 
         # # angular index.html location
         location / {
-            root   /usr/share/nginx/html/build;
+            root   /usr/share/nginx/html;
             index  index.html index.htm;
         }
         # # potential reverse proxy for sending api calls
