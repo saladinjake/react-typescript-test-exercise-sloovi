@@ -1,23 +1,4 @@
 
-
-
-# Mitigate httpoxy attack (see README for details)
-#proxy_set_header Proxy "";
-
-
-# Heroku dynos have at least 4 cores
-worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
-
-events {
-    use epoll;
-    accept_mutex on;
-    worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
-}
-
-
-
-
-http {
     upstream nodeserver_upstream {
         server https://final-demo-exercise.herokuapp.com/;
     }
@@ -93,5 +74,5 @@ http {
             try_files $uri $uri/ /index.html;
         }
 
-}
+ }
 
