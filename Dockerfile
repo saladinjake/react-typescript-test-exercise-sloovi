@@ -1,59 +1,96 @@
-#!/bin/sh
-# Get Nginx image from Docker hub
-FROM nginx:1.21.6
-FROM node:10
-# Copy our configuration file to nginx path
-RUN rm /etc/nginx/conf.d/default.conf
-#COPY nginx.conf /etc/nginx/nginx.conf
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Update available packages in Debian
-RUN apt-get update
 
 
-# Configure Nginx port for heroku
-#CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+########################################################################### FRONTEND DEVOPS DEPLOYMENT WITH DOCKER STAND ALONE ##################################################
+# @task : deploy application using nginx as a reverse porxy and load balancer
+# @desc: All api endpoints should proxy into the backend api given in the task asignment
+#        meet the ui design specification
+#        deploy  working url on your favorite platform
+# @author: saladinjake
+#
+#################################################################################################################################################################################
 
-RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf
+########################################################
+# STAGE 1 : SIMULATE NODE REACT APP AND RUN THE BUILD  #
+########################################################
 
-# Install curl cmd line tool
-RUN apt-get install curl -y
+# pull official base image
 
-# Fetch latest node v10.x from nodesource
-RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+FROM node:10 AS builder
 
-# Run setup script
-RUN bash nodesource_setup.sh
+# set working directory
 
-# install nodejs and npm
-RUN apt install nodejs -y
+WORKDIR /app
 
-# Change work dir
-WORKDIR /usr/src/app
 
-# Copy everything 
-COPY . .
+# install app dependencies
+#copies package.json and package-lock.json to Docker environment
+COPY package.json ./
 
-# Do a clean install based on package-lock file
-RUN npm ci
+# Installs all node packages
+RUN npm install 
 
-# Build frontend
+
+# Copies everything over to Docker environment
+COPY . ./
 RUN npm run build
 
 
 
-COPY build/ /usr/share/nginx/html
+
+
+####################################################################################################################
+#Stage 2 Build nginx process and move build files to replace default nginx html file as well as default nginx conf #
+####################################################################################################################
+
+#pull the official nginx:1.19.0 base image
+
+FROM nginx:1.19.0
+
+#copies React to the container directory
+# Set working directory to nginx resources directory
+
+WORKDIR /usr/share/nginx/html
+
+# Remove default nginx static resources
+
+RUN rm -rf ./*
+
+# Copies static resources from builder stage
+
+COPY --from=builder /app/build .
+# Containers run nginx with global directives and daemon off
+
+
+# move the custom nginx conf with the proxied api 
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 
 
 
+##################################################################################
+# FINALLY: EXPOSE PORTS SHARE HEROKU PORT WITH NGIX CONF AND LAUNCH NGINX #      
+##################################################################################
+
+# Lets use default port 80 for testing locally when trying out that it works before pushing to deployment
+ENV PORT=80
+
+# Configure Nginx port for heroku
+#CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+
+# OR:  Configure Nginx port for heroku
+# Replace $PORT with $PORT value and run nginx.
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
 
-EXPOSE 8000
-CMD ["nginx", "-g", "daemon off;"]
 
-
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
+# OR
+#CMD ["nginx", "-g", "daemon off;"]
 
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
 EXPOSE $PORT
+
+
+
+
+
