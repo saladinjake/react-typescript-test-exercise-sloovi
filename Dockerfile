@@ -14,13 +14,10 @@ RUN apt-get update
 # Configure Nginx port for heroku
 #CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/nginx.conf" && nginx -g 'daemon off;'
-
-#RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf
+RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf
 
 # Install curl cmd line tool
 #RUN apt-get install curl -y
-
 
 # Fetch latest node v10.x from nodesource
 #RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
@@ -50,5 +47,6 @@ COPY build/ /usr/share/nginx/html
 # Expose port picked by Heroku. Otherwise we couldn't connect to the server running inside a docker container
 EXPOSE $PORT
 
+EXPOSE 8000
 
 
